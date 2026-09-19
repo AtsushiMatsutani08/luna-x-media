@@ -1,0 +1,25 @@
+name: Import LUNA media
+on:
+  push:
+    paths:
+      - ".github/workflows/import-media.yml"
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download approved LUNA image
+        run: |
+          mkdir -p media
+          curl -fL --retry 3 "https://at.adobe.com/nE8mlPZ3eWtMknKI" -o media/luna-night-2026-09-19.jpg
+          file media/luna-night-2026-09-19.jpg
+          test "$(head -c 2 media/luna-night-2026-09-19.jpg | xxd -p)" = "ffd8"
+      - name: Commit media
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/luna-night-2026-09-19.jpg
+          git commit -m "Add approved LUNA X image"
+          git push
