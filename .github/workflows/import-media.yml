@@ -1,6 +1,8 @@
 name: Import LUNA media
 on:
   push:
+    paths:
+      - "requests/*.json"
 permissions:
   contents: write
 jobs:
@@ -8,16 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download approved LUNA image
+        with:
+          fetch-depth: 2
+      - name: Import requested image
         run: |
-          mkdir -p media
-          curl -fL --retry 3 "https://at.adobe.com/nE8mlPZ3eWtMknKI" -o media/luna-night-2026-09-19.jpg
-          file media/luna-night-2026-09-19.jpg
-          test "$(head -c 2 media/luna-night-2026-09-19.jpg | xxd -p)" = "ffd8"
-      - name: Commit media
+          REQUEST="$(git diff --name-only HEAD^ HEAD -- 'requests/*.json' | tail -1)"
+          test -n "$REQUEST"
+          SOURCE_URL="$(jq -r '.source_url' "$REQUEST")"
+          OUTPUT="$(jq -r '.output' "$REQUEST")"
+          case "$OUTPUT" in media/*) ;; *) echo "output must be under media/" >&2; exit 1;; esac
+          mkdir -p "$(dirname "$OUTPUT")"
+          curl -fL --retry 3 "$SOURCE_URL" -o "$OUTPUT"
+          MIME="$(file --mime-type -b "$OUTPUT")"
+          case "$MIME" in image/jpeg|image/png|image/webp) ;; *) echo "Unsupported media: $MIME" >&2; exit 1;; esac
+      - name: Commit imported media
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add media/luna-night-2026-09-19.jpg
-          git commit -m "Add approved LUNA X image"
+          git add media/
+          git diff --cached --quiet && exit 0
+          git commit -m "Import LUNA X media"
           git push
