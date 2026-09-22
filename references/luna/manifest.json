@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "persona": "LUNA",
+  "primary": "luna-reference-02.jpeg",
+  "references": [
+    {
+      "file": "luna-reference-01.jpeg",
+      "source_library_id": "libfile_58c45ad4d27481918037d4c9a650c7c3",
+      "source_filename": "18305E06-9590-4F56-AD3C-DFA682BEDCC3.jpeg",
+      "git_blob_sha": "9342c6b2c5286b470a187fd503830e2c9098d0b1",
+      "role": "supplementary_angles_and_lifestyle"
+    },
+    {
+      "file": "luna-reference-02.jpeg",
+      "source_library_id": "libfile_91aa3d5b17288191a07d47cd526be756",
+      "source_filename": "8E30B93C-CCA2-47C7-BC26-0636D8A7F3EC.jpeg",
+      "git_blob_sha": "371443a0711015abfd80b0116c0ebd0c429ed737",
+      "role": "primary_face"
+    },
+    {
+      "file": "luna-reference-03.jpeg",
+      "source_library_id": "libfile_8bff823f63cc819199e118aa51a42db1",
+      "source_filename": "74160014-7FDC-4D45-9914-0772C7EB4D9F.jpeg",
+      "git_blob_sha": "46217813830478a348c4fe74b981f8f1d3c53a48",
+      "role": "supplementary_angles_and_lifestyle"
+    },
+    {
+      "file": "luna-reference-04.jpeg",
+      "source_library_id": "libfile_a2886a90034481918da48f6670b1ca99",
+      "source_filename": "346B95E9-24EB-4DAF-9796-C781AF49C55E.jpeg",
+      "git_blob_sha": "fde303defc7409b5c8ab8f2342c400eeb11d3414",
+      "role": "supplementary_angles_and_lifestyle"
+    }
+  ]
+}
