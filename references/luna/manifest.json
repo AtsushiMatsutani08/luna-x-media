@@ -1,5 +1,5 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "persona": "LUNA",
   "primary": "luna-master-identity.jpeg",
   "references": [
@@ -38,5 +38,20 @@
     "source_filename": "27E923F2-5AB4-4B3F-98E7-DC9B3CA911DF.jpeg",
     "git_blob_sha": "b57bdbe5c035b9e601df3e0f955b183cd28f4857",
     "role": "owner_approved_master_identity"
-  }
+  },
+  "style_references": [
+    {
+      "file": "luna-outdoor-hair-down.png",
+      "role": "owner_approved_outdoor_hair_down",
+      "git_blob_sha": "7f083f1bed90431db92a9bc15871a6efb278bdb9",
+      "usage": "外出シーンのダウンヘア・服装基準。人物同一性はマスターと併用。",
+      "outfits": [
+        "City Casual",
+        "Smart Jacket",
+        "Minimal Dress",
+        "Soft Neutral",
+        "Trench Style"
+      ]
+    }
+  ]
 }
