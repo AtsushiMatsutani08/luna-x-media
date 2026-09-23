@@ -1,0 +1,33 @@
+name: Build YUNA morning selfie
+on:
+  push:
+    paths:
+      - 'staging/yuna-morning-2026-09-23/build.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decode YUNA selfie
+        run: |
+          mkdir -p media/yuna
+          cat             staging/yuna-morning-2026-09-23/chunk00.txt             staging/yuna-morning-2026-09-23/chunk01.txt             staging/yuna-morning-2026-09-23/chunk02.txt             staging/yuna-morning-2026-09-23/chunk03a.txt             staging/yuna-morning-2026-09-23/chunk03b.txt             staging/yuna-morning-2026-09-23/chunk04.txt             staging/yuna-morning-2026-09-23/chunk05.txt             staging/yuna-morning-2026-09-23/chunk06.txt             staging/yuna-morning-2026-09-23/chunk07a.txt             staging/yuna-morning-2026-09-23/chunk07b.txt             staging/yuna-morning-2026-09-23/chunk08a.txt             staging/yuna-morning-2026-09-23/chunk08b.txt             staging/yuna-morning-2026-09-23/chunk09a.txt             staging/yuna-morning-2026-09-23/chunk09b.txt             > /tmp/yuna.b64
+          test "$(wc -c < /tmp/yuna.b64)" -eq 76284
+          base64 -d /tmp/yuna.b64 > media/yuna/yuna-morning-2026-09-23-selfie.jpg
+          test "$(wc -c < media/yuna/yuna-morning-2026-09-23-selfie.jpg)" -eq 57213
+          file media/yuna/yuna-morning-2026-09-23-selfie.jpg
+
+      - name: Commit generated media
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/yuna/yuna-morning-2026-09-23-selfie.jpg
+          git commit -m "Add YUNA morning selfie for corrected post" || true
+          git push
