@@ -1,0 +1,16 @@
+{
+  "persona": "YUNA",
+  "version": "2026-09-24",
+  "status": "LOCKED_REFERENCE_REQUIRED",
+  "referenceDirectory": "media/yuna/reference/",
+  "masterFiles": ["master-01.jpg","master-02.jpg","master-03.jpg","master-04.jpg","master-05.jpg"],
+  "primary": "master-01.jpg",
+  "rules": {
+    "requireActualReferenceImage": true,
+    "blockGenerationWhenReferenceMissing": true,
+    "neverUseLunaAssets": true,
+    "identityMustMatch": true,
+    "noTextOnlyGeneration": true
+  },
+  "note": "Five approved YUNA reference images supplied by user on 2026-09-24. Binary upload pending initial GitHub-side registration."
+}
