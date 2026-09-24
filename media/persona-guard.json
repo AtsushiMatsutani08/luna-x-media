@@ -1,0 +1,18 @@
+{
+  "version": "2026-09-24",
+  "personas": {
+    "YUNA": {
+      "allowedPrefix": "media/yuna/",
+      "referencePrefix": "media/yuna/reference/",
+      "forbiddenPrefixes": ["media/luna/","media/luna-"],
+      "requireReference": true
+    },
+    "LUNA": {
+      "allowedPrefix": "media/luna/",
+      "referencePrefix": "media/luna/reference/",
+      "forbiddenPrefixes": ["media/yuna/"],
+      "requireReference": true
+    }
+  },
+  "policy": "Never cross-reference YUNA and LUNA assets. Block generation/publishing on persona-path mismatch."
+}
