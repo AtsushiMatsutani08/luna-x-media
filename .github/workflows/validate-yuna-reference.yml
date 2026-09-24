@@ -1,0 +1,21 @@
+name: Validate YUNA Reference Set
+
+on:
+  push:
+    paths:
+      - 'media/yuna/reference/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require all approved YUNA masters
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in master-01.jpg master-02.jpg master-03.jpg master-04.jpg master-05.jpg; do
+            test -s "media/yuna/reference/$f" || { echo "::error::Missing YUNA reference: $f"; exit 1; }
+          done
+          echo "YUNA_REFERENCE_READY=true"
